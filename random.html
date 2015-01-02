@@ -1,0 +1,254 @@
+<html>
+
+<head>
+
+<style>
+div.left { position:absolute; width:500px; height:65px;
+	top:160; left:50;}
+div.right { position:absolute; width:500px; height:65px;
+	top:160; left:500;}
+</style>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+
+var Colors = ['red', 'yellow', 'blue', 'purple', 'black' ];
+var Counts = [0, 0, 0, 0, 0];
+
+var Bag = [];
+
+Cities = [[4, 'Boston', 'none'],
+          [2, 'Providence', 'none'],
+          [1, 'New Haven', 'none'],
+          [5, 'New York', 'none'],
+          [4, 'Philadelphia', 'none'],
+          [1, 'Dover', 'none'],
+          [1, 'Norfolk', 'none'],
+          [2, 'Wilmington', 'none'],
+          [4, 'Charleston', 'none'],
+          [3, 'Savannah', 'none'],
+          [2, 'Jacksonville', 'none'],
+          [1, 'Columbia', 'none'],
+          [2, 'Raleigh', 'none'],
+          [3, 'Richmond', 'none'],
+          [2, 'Washington D.C.', 'none'],
+          [4, 'Baltimore', 'none'],
+          [2, 'Albany', 'none'],
+          [1, 'Buffalo', 'none'],
+          [4, 'Pittsburgh', 'none'],
+          [3, 'Wheeling', 'none'],
+          [1, 'Knoxville', 'none'],
+          [1, 'Chattanooga', 'none'],
+          [4, 'Atlanta', 'none'],
+          [1, 'Tallahassee', 'none'],
+          [2, 'Mobile', 'none'],
+          [1, 'Montgomery', 'none'],
+          [1, 'Birmingham', 'none'],
+          [3, 'Nashville', 'none'],
+          [2, 'Lexington', 'none'],
+          [2, 'Louisville', 'none'],
+          [3, 'Cincinatti', 'none'],
+          [1, 'Columbus', 'none'],
+          [1, 'Cleveland', 'none'],
+          [3, 'Toronto', 'none'],
+          [3, 'Detroit', 'none'],
+          [1, 'Toledo', 'none'],
+          [1, 'Indianapolis', 'none'],
+          [4, 'Chicago', 'none'],
+          [2, 'Milwaukee', 'none'],
+          [1, 'Rock Island', 'none'],
+          [3, 'St. Louis', 'none'],
+          [3, 'Memphis', 'none'],
+          [1, 'Jackson', 'none'],
+          [5, 'New Orleans', 'none'],
+          [1, 'Shreveport', 'none'],
+          [1, 'Little Rock', 'none'],
+          [1, 'Dallas', 'none'],
+          [1, 'Tulsa', 'none'],
+          [1, 'Kansas City', 'none'],
+          [1, 'Des Moines', 'none'],
+          [1, 'Minneapolis', 'none'],
+          [2, 'Duluth', 'none']];
+
+function dispCities() {
+	for (idx=0; idx<Cities.length; idx++) {
+		id = Cities[idx][1];
+		c = Cities[idx][0];
+		string = Cities[idx][2];
+		document.getElementById(id).innerHTML = string;
+	}
+}
+
+function initCities() {
+	var idx
+	for (idx=0; idx<Cities.length; idx++) {
+		id = Cities[idx][1];
+		c = Cities[idx][0];
+		string = '';
+		for (j=0; j<c; j++) {
+			color = pickCube();
+			string = string + color + ' ';
+		}
+		Cities[idx][2] = string;;
+	}
+	dispCities();
+}
+
+function initBag() {
+    var i;
+    Bag = [];
+	for (i=0; i<25; i++) {
+		Bag.push( 0 );
+		Bag.push( 1 );
+		Bag.push( 2 );
+		Bag.push( 3 );
+		Bag.push( 4 );
+	}
+}
+
+function countBag() {
+	Counts = [0, 0, 0, 0, 0];
+
+	for (i=0; i<Bag.length; i++) {
+		Counts[Bag[i]]++;
+	}
+}
+
+function dispBag() {
+	countBag();
+	document.getElementById('red').innerHTML = Counts[0]+'';
+	document.getElementById('yellow').innerHTML = Counts[1]+'';
+	document.getElementById('blue').innerHTML = Counts[2]+'';
+	document.getElementById('purple').innerHTML = Counts[3]+'';
+	document.getElementById('black').innerHTML = Counts[4]+'';
+
+	document.getElementById('bag').innerHTML = Bag.length;
+}
+
+function pickCube(){
+	cube=Math.floor(Math.random()*Bag.length);
+	color = Colors[Bag[cube]];
+	Bag.splice( cube, 1 );
+	dispBag();
+	document.getElementById('picked').innerHTML
+		= cube+' out of '+Bag.length+' '+color;
+	return( color );
+}
+
+function doBag(){
+	initBag();
+	dispBag();
+}
+
+function doColor( c ) {
+	Bag.push( c );
+	dispBag();
+}
+
+function doCities() {
+	initCities();
+	dispBag();
+}
+
+function setCookie() {
+	Cookie = [ Bag, Cities ];
+	document.cookie = JSON.stringify( Cookie );
+}
+
+function getCookie() {
+	Cookie = JSON.parse( document.cookie );
+	Cities = Cookie[1];
+	dispCities();
+	Bag = Cookie[0];
+	dispBag();
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<input type='button' onclick='setCookie()' value='Set'/>
+<input type='button' onclick='getCookie()' value='Get'/>
+
+<p>
+<input type='button' onclick='doBag()' value='Bag'/> <b id = 'bag'></b>
+
+<input type='button' onclick='doColor( 0 )' value='Red'/> <b id='red'></b>
+<input type='button' onclick='doColor( 1 )' value='Yellow'/> <b id='yellow'></b>
+<input type='button' onclick='doColor( 2 )' value='Blue'/> <b id='blue'></b>
+<input type='button' onclick='doColor( 3 )' value='Purple'/> <b id='purple'></b>
+<input type='button' onclick='doColor( 4 )' value='Black'/> <b id='black'></b>
+</p>
+
+<p><input type='button' onclick='pickCube()' value='Pick Cube'/>
+ <b id='picked'></b></p>
+
+<p><input type='button' onclick='initCities()' value='Init Cities'/>
+<input type='button' onclick='dispCities()' value='Disp Cities'/>
+</p>
+
+<div class="left">
+<p>Boston <b id='Boston'></b></p>
+<p>Providence <b id='Providence'></b></p>
+<p>New Haven <b id='New Haven'></b></p>
+<p>New York <b id='New York'></b></p>
+<p>Philadelphia <b id='Philadelphia'></b></p>
+<p>Dover <b id='Dover'></b></p>
+<p>Norfolk <b id='Norfolk'></b></p>
+<p>Wilmington <b id='Wilmington'></b></p>
+<p>Charleston <b id='Charleston'></b></p>
+<p>Savannah <b id='Savannah'></b></p>
+<p>Jacksonville <b id='Jacksonville'></b></p>
+<p>Columbia <b id='Columbia'></b></p>
+<p>Raleigh <b id='Raleigh'></b></p>
+<p>Richmond <b id='Richmond'></b></p>
+<p>Washington D.C. <b id='Washington D.C.'></b></p>
+<p>Baltimore <b id='Baltimore'></b></p>
+<p>Albany <b id='Albany'></b></p>
+<p>Buffalo <b id='Buffalo'></b></p>
+<p>Pittsburgh <b id='Pittsburgh'></b></p>
+<p>Wheeling <b id='Wheeling'></b></p>
+<p>Knoxville <b id='Knoxville'></b></p>
+<p>Chattanooga <b id='Chattanooga'></b></p>
+<p>Atlanta <b id='Atlanta'></b></p>
+<p>Tallahassee <b id='Tallahassee'></b></p>
+<p>Mobile <b id='Mobile'></b></p>
+<p>Montgomery <b id='Montgomery'></b></p>
+</div>
+
+<div class="right">
+<p>Birmingham <b id='Birmingham'></b></p>
+<p>Nashville <b id='Nashville'></b></p>
+<p>Lexington <b id='Lexington'></b></p>
+<p>Louisville <b id='Louisville'></b></p>
+<p>Cincinatti <b id='Cincinatti'></b></p>
+<p>Columbus <b id='Columbus'></b></p>
+<p>Cleveland <b id='Cleveland'></b></p>
+<p>Toronto <b id='Toronto'></b></p>
+<p>Detroit <b id='Detroit'></b></p>
+<p>Toledo <b id='Toledo'></b></p>
+<p>Indianapolis <b id='Indianapolis'></b></p>
+<p>Chicago <b id='Chicago'></b></p>
+<p>Milwaukee <b id='Milwaukee'></b></p>
+<p>Rock Island <b id='Rock Island'></b></p>
+<p>St. Louis <b id='St. Louis'></b></p>
+<p>Memphis <b id='Memphis'></b></p>
+<p>Jackson <b id='Jackson'></b></p>
+<p>New Orleans <b id='New Orleans'></b></p>
+<p>Shreveport <b id='Shreveport'></b></p>
+<p>Little Rock <b id='Little Rock'></b></p>
+<p>Dallas <b id='Dallas'></b></p>
+<p>Tulsa <b id='Tulsa'></b></p>
+<p>Kansas City <b id='Kansas City'></b></p>
+<p>Des Moines <b id='Des Moines'></b></p>
+<p>Minneapolis <b id='Minneapolis'></b></p>
+<p>Duluth <b id='Duluth'></b></p>
+</div>
+
+</body>
+
+</html>
