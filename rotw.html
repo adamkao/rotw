@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>siesta</title>
+	<link rel='stylesheet' type='text/css' href='rotw.css' />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type='text/javascript' src='rotw.js'></script>
+</head>
+<body>
+<input type='button' onclick='setCookie()' value='Set'/>
+<input type='button' onclick='getCookie()' value='Get'/>
+
+<p>
+<input type='button' onclick='doBag()' value='Bag'/> <b id = 'bag'></b>
+
+<input type='button' onclick='doColor( 0 )' value='Red'/> <b id='red'></b>
+<input type='button' onclick='doColor( 1 )' value='Yellow'/> <b id='yellow'></b>
+<input type='button' onclick='doColor( 2 )' value='Blue'/> <b id='blue'></b>
+<input type='button' onclick='doColor( 3 )' value='Purple'/> <b id='purple'></b>
+<input type='button' onclick='doColor( 4 )' value='Black'/> <b id='black'></b>
+</p>
+
+<p><input type='button' onclick='pickCube()' value='Pick Cube'/>
+ <b id='picked'></b></p>
+
+<p><input type='button' onclick='initCities()' value='Init Cities'/>
+<input type='button' onclick='dispCities()' value='Disp Cities'/>
+</p>
+
+<div class="left">
+<p>Boston <b id='Boston'></b></p>
+<p>Providence <b id='Providence'></b></p>
+<p>New Haven <b id='New Haven'></b></p>
+<p>New York <b id='New York'></b></p>
+<p>Philadelphia <b id='Philadelphia'></b></p>
+<p>Dover <b id='Dover'></b></p>
+<p>Norfolk <b id='Norfolk'></b></p>
+<p>Wilmington <b id='Wilmington'></b></p>
+<p>Charleston <b id='Charleston'></b></p>
+<p>Savannah <b id='Savannah'></b></p>
+<p>Jacksonville <b id='Jacksonville'></b></p>
+<p>Columbia <b id='Columbia'></b></p>
+<p>Raleigh <b id='Raleigh'></b></p>
+<p>Richmond <b id='Richmond'></b></p>
+<p>Washington D.C. <b id='Washington D.C.'></b></p>
+<p>Baltimore <b id='Baltimore'></b></p>
+<p>Albany <b id='Albany'></b></p>
+<p>Buffalo <b id='Buffalo'></b></p>
+<p>Pittsburgh <b id='Pittsburgh'></b></p>
+<p>Wheeling <b id='Wheeling'></b></p>
+<p>Knoxville <b id='Knoxville'></b></p>
+<p>Chattanooga <b id='Chattanooga'></b></p>
+<p>Atlanta <b id='Atlanta'></b></p>
+<p>Tallahassee <b id='Tallahassee'></b></p>
+<p>Mobile <b id='Mobile'></b></p>
+<p>Montgomery <b id='Montgomery'></b></p>
+</div>
+
+<div class="right">
+<p>Birmingham <b id='Birmingham'></b></p>
+<p>Nashville <b id='Nashville'></b></p>
+<p>Lexington <b id='Lexington'></b></p>
+<p>Louisville <b id='Louisville'></b></p>
+<p>Cincinatti <b id='Cincinatti'></b></p>
+<p>Columbus <b id='Columbus'></b></p>
+<p>Cleveland <b id='Cleveland'></b></p>
+<p>Toronto <b id='Toronto'></b></p>
+<p>Detroit <b id='Detroit'></b></p>
+<p>Toledo <b id='Toledo'></b></p>
+<p>Indianapolis <b id='Indianapolis'></b></p>
+<p>Chicago <b id='Chicago'></b></p>
+<p>Milwaukee <b id='Milwaukee'></b></p>
+<p>Rock Island <b id='Rock Island'></b></p>
+<p>St. Louis <b id='St. Louis'></b></p>
+<p>Memphis <b id='Memphis'></b></p>
+<p>Jackson <b id='Jackson'></b></p>
+<p>New Orleans <b id='New Orleans'></b></p>
+<p>Shreveport <b id='Shreveport'></b></p>
+<p>Little Rock <b id='Little Rock'></b></p>
+<p>Dallas <b id='Dallas'></b></p>
+<p>Tulsa <b id='Tulsa'></b></p>
+<p>Kansas City <b id='Kansas City'></b></p>
+<p>Des Moines <b id='Des Moines'></b></p>
+<p>Minneapolis <b id='Minneapolis'></b></p>
+<p>Duluth <b id='Duluth'></b></p>
+</div>
+
+</body>
+
+</html>
